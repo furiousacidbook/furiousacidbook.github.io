@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Updates — Furious Acid</title>
+  <style>
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+         display:flex;min-height:100vh;align-items:center;justify-content:center;background:#111;color:#eee}
+    .card{width:min(520px,92vw);background:#1b1b1b;padding:28px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.45);text-align:center}
+    img{max-width:100%;height:auto;border-radius:12px;margin-bottom:16px}
+    h1{font-size:1.35rem;margin:0 0 6px}
+    p{opacity:.85;margin:.25rem 0 1rem}
+    form{display:flex;gap:8px}
+    input[type="email"]{flex:1;padding:12px 14px;border-radius:10px;border:1px solid #333;background:#0f0f0f;color:#eee}
+    button{padding:12px 16px;border:0;border-radius:10px;background:#4f8cff;color:#fff;cursor:pointer}
+    .note{font-size:.85rem;opacity:.7;margin-top:10px}
+    .hide{display:none}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Replace the src with your picture URL later -->
+    <img src="https://picsum.photos/960/540?blur=1" alt="Book cover preview" />
+    <h1>Get an email when the book drops</h1>
+    <p>Enter your email. That’s it.</p>
+
+    <!-- STEP 2 will replace YOUR_FORM_ID below -->
+    <form id="signup" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="email" name="email" placeholder="you@example.com" required />
+      <button type="submit">Notify me</button>
+    </form>
+
+    <p id="thanks" class="note hide">Thanks! You’re on the list — you’ll be notified at release.</p>
+    <p class="note">We only use this to email about the book. Unsubscribe anytime.</p>
+  </div>
+
+  <script>
+    // Optional: submit with fetch to stay on the page and show a "thanks" message.
+    const form = document.getElementById('signup');
+    const thanks = document.getElementById('thanks');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const endpoint = form.getAttribute('action');
+      const r = await fetch(endpoint, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+      if (r.ok) {
+        form.classList.add('hide');
+        thanks.classList.remove('hide');
+        form.reset();
+      } else {
+        alert('Sorry, something went wrong. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
