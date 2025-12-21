@@ -1,55 +1,56 @@
 <!doctype html>
 <html lang="en">
-<body>
-  <div class="card">
-    <h1>Redirecting…</h1>
-    <p>You’re being sent to the official Amazon page for<br><strong>Marijuana Manual: Technical Notebook</strong>.</p>
-    <p>
-      If nothing happens,
-      <a href="https://www.amazon.com/dp/B0G8VLPS1K">
-        click here to view the book
-      </a>.
-    </p>
-  </div>
-</body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Furious Acid → Amazon</title>
 
-<body>
-  <div class="card">
-    <img src="https://picsum.photos/960/540?blur=1" alt="Book cover preview" />
-    <h1>Get an email when the book drops</h1>
-    <p>Enter your email. That’s it.</p>
+  <!-- Canonical + preview-friendly -->
+  <link rel="canonical" href="https://www.amazon.com/dp/B0G8VLPS1K" />
 
-    <!-- Formspree connection -->
-    <form id="signup" action="https://formspree.io/f/xovkgvrd" method="POST">
-      <input type="email" name="email" placeholder="you@example.com" required />
-      <input type="hidden" name="_replyto" value="furiousacidamide@gmail.com" />
-      <button type="submit">Notify me</button>
-    </form>
+  <!-- Meta refresh redirect (works without JS) -->
+  <meta http-equiv="refresh" content="0; url=https://www.amazon.com/dp/B0G8VLPS1K" />
 
-    <p id="thanks" class="note hide">Thanks! You’re on the list — you’ll be notified at release.</p>
-    <p class="note">We only use this to email about the book. Unsubscribe anytime.</p>
-  </div>
-
+  <!-- JS redirect (works when meta refresh is ignored) -->
   <script>
-    const form = document.getElementById('signup');
-    const thanks = document.getElementById('thanks');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const data = new FormData(form);
-      const endpoint = form.getAttribute('action');
-      const r = await fetch(endpoint, {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-      if (r.ok) {
-        form.classList.add('hide');
-        thanks.classList.remove('hide');
-        form.reset();
-      } else {
-        alert('Sorry, something went wrong. Please try again.');
-      }
-    });
+    window.location.replace("https://www.amazon.com/dp/B0G8VLPS1K");
   </script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #111;
+      color: #eee;
+      text-align: center;
+    }
+    .card {
+      width: min(560px, 92vw);
+      background: #1b1b1b;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.45);
+    }
+    a {
+      color: #4f8cff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+    .small { opacity: .75; font-size: .9rem; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Redirecting to Amazon…</h1>
+    <p>If you aren’t redirected automatically, click:</p>
+    <p>
+      <a href="https://www.amazon.com/dp/B0G8VLPS1K">Open the book on Amazon</a>
+    </p>
+    <p class="small">ASIN: B0G8VLPS1K</p>
+  </div>
 </body>
 </html>
